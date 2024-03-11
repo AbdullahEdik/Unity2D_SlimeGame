@@ -7,3 +7,7 @@
 
 ## 10.03.2024
 - Created README.md
+
+## 11.03.2024
+- Change to pre-prepared skeleton assets for simplicity
+- Added walk animations for player
