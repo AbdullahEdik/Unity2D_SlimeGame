@@ -11,3 +11,9 @@
 ## 11.03.2024
 - Change to pre-prepared skeleton assets for simplicity
 - Added walk animations for player
+
+## 12.03.2024
+
+- Added an enemy that follows the player
+- Implement player health and enemy attack
+- Set up game over screen when player death

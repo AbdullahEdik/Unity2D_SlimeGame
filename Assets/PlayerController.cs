@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -12,10 +13,21 @@ public class PlayerController : MonoBehaviour
 
     public Animator animator;
 
+    public float health = 50f;
+
+    private GameOverScreen gameOverScreen;
+
+    public Image background;
+
     Vector2 movement;
     
     void Start()
     {
+        gameOverScreen = background.GetComponent<GameOverScreen>();
+        if (gameOverScreen == null)
+        {
+            Debug.LogError("GameOverScreen script not found on the background GameObject.");
+        }
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -33,5 +45,22 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
+    }
+
+    public void TakeDamage(float damage)
+    {
+        health -= damage;
+
+        if (health <= 0)
+        {
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        Debug.Log("PLayer is dead!\nGame is over.");
+        gameOverScreen.Setup(0);
+        Time.timeScale = 0f;
     }
 }
